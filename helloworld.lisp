@@ -10,7 +10,7 @@
 ;;;; --------COMMENTS--------
 
 
-;;; Comments:
+;;; Regular comments:
 
 ;;;; Program description
 ;;; Normal comment
