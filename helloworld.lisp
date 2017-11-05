@@ -1,4 +1,4 @@
-;;;; CLisp Cheat Sheet, Emilien Fugier, Universite de Technologie de Compiegne, 2017
+;;; CLisp Cheat Sheet, Emilien Fugier, Universite de Technologie de Compiegne, 2017
 ;;;; Sources:
 ;;;; https://www.tutorialspoint.com/lisp/index.htm
 ;;;; https://www.youtube.com/watch?v=ymSq4wHrqyU
@@ -26,7 +26,7 @@ Mutiligne comment
 	- numbers (which value is the number itself)
 	- a symbol:
 		- 't' (true) 'nil' (void / false)
-		- any variable dinamically defined and modified by the user
+		- any variable dynamically defined and modified by the user
 		- any text precedeed by a quote '
 	
 	
