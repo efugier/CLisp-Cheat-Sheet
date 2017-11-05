@@ -162,14 +162,21 @@ s ; 3
 
 (listp '(a b c)) ; t ; checks if it's a list
 (atom 'a)  ; t ; checks if it's an atom
-		
+
+
 ;;; lambda function:
 ((lambda (a) (list a a a)) 'a)  ; (a a a)
 
 
-
 ;;; mapcar:
 (mapcar (lambda (a) (+ 1 a)) '(1 2 3)) ; (2 3 4)  ; returns a list made of the first parameter (a function) applied to each item of the second
+
+
+;;; let: local varaibles (cease to exist after the "let" block)
+(let ((var1-name 3) (var2-name 2))  ; careful: variable declaration is a list itself, don't forget the brackets ( )
+	(+ var1-name var2-name)
+	(* var1-name var2-name)
+)
 
 
 
@@ -226,11 +233,12 @@ s ; 3
 	  do (format t "~%")
 )
 
-
-;;; let: local varaibles (cease to exist after the "let" block)
-(let ((var1-name 3) (var2-name 2))  ; careful: variable declaration is a list itself, don't forget the brackets ( )
-	(+ var1-name var2-name)
-	(* var1-name var2-name)
+;;; break from a loop
+(loop for i in '(1 2 3) do
+      (print i)
+      (when (eq i 2)
+	    (print "The end")
+	    (return-from nil "")
 )
 
 
