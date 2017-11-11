@@ -21,6 +21,11 @@
 Mutiligne comment
 ||#
 
+
+
+;;;; --------THEORY--------
+
+
 #|| About the Atoms :
 2 types of atoms:
 	- numbers (which value is the number itself)
