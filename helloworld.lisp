@@ -191,55 +191,58 @@ s ; 3
 ;;; dolist:
 (dolist (i '(1 2 3)) (print i) (print (+ i 1)))  ; i takes the values of each element of the list (<=> for i in L in python)
 
-(loop for i in '(1 2 3) do (print i) (print (+ i 1)))  ; same
+
+;;; LOOP synthax: http://www.gigamonkeys.com/book/loop-for-black-belts.html
+
+(loop :for i :in '(1 2 3) :do (print i) (print (+ i 1)))  ; same
 
 
 ;;; from & while
-(loop for i from 1  ; start at 1 and is incremented by 1 at each iteration
-	while (< i 10)
-	do (print i)
+(loop :for i :from 1  ; start at 1 and is incremented by 1 at each iteration
+	:while (< i 10)
+	:do (print i)
 )
 
 ;;; until & collect:
-(loop for i in '(a b c d 0 1 2 3)  ; (a b c d)
-	until (numberp i)  ; until provides a stop condition ; while also works
-	do (format t "hey i'm running")
-	collect (list i "lettre")  ; builds a list with all the values taken by i /!\ not a "do"
+(loop :for i :in '(a b c d 0 1 2 3)  ; (a b c d)
+	:until (numberp i)  ; until provides a stop condition ; while also works
+	:do (format t "hey i'm running")
+	:collect (list i "lettre")  ; builds a list with all the values taken by i /!\ not a "do"
 )
 
 ;;; return
-(loop for i in '(a b c d 0 1 2 3)  ; 0
-	do
+(loop :for i :in '(a b c d 0 1 2 3)  ; 0
+	:do
 	(when (numberp i) (return i))  ; returns bearks the loop and returns the value
 )
 
 ;;; several variables can loop through the components of a complex list
-(loop for (a b) in '((x 1) (y 2) (z 3))  ; ((1 x) (2 y) (3 z))
-      collect (list b a) 
+(loop :for (a b) :in '((x 1) (y 2) (z 3))  ; ((1 x) (2 y) (3 z))
+      :collect (list b a) 
 )
 
 
 ;;; parrallel processing: goes through both lists at the same time
-(loop for x in '(a b c)  ; ((a 1) (b 2) (c 3))	
-      for y in '(1 2 3)
-      collect (list x y) 
+(loop :for x :in '(a b c)  ; ((a 1) (b 2) (c 3))	
+      :for y :in '(1 2 3)
+      :collect (list x y) 
 )
 
 ;;; can be use to have a counter while iterating:
-(loop for x in '(a b c) ; print a, b, c
-      for y from 1
+(loop :for x :in '(a b c) ; print a, b, c
+      :for y :from 1
 	  
-      when (> y 1)
-      do (format t ", ")
+      :when (> y 1)
+      :do (format t ", ")
 	  
-      do (format t "~A" x)
+      :do (format t "~A" x)
 	  
-	  when (= y 3)
-	  do (format t "~%")
+	  :when (= y 3)
+	  :do (format t "~%")
 )
 
 ;;; break from a loop
-(loop for i in '(1 2 3) do
+(loop :for i :in '(1 2 3) :do
       (print i)
       (when (eq i 2)
 	    (print "The end")
