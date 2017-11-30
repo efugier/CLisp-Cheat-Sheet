@@ -247,6 +247,7 @@ s ; 3
       (when (eq i 2)
 	    (print "The end")
 	    (return-from nil "")
+      )
 )
 
 
@@ -359,3 +360,34 @@ s ; 3
 			do (format t "~a~%" line)
 	)
 )
+      
+      
+
+;;;; --------OBJECTS (CLOS)--------
+
+(defclass Point ()  ; defines a classe Point
+  (($x :accessor ?x :initarg :x :initform 0)  ; abscissa, with 0 as default value
+   ($y :accessor ?y :initarg :y :type number))  ; ordinate, which must be a number
+)
+;;; :accessor defines the synthax used to access the attribute
+;;; :initarg defines the synthax to use to instantiate the attribute
+;;; :initfrom povides a default value
+;;; :type defines the attribute's type
+      
+(defmethod =Translate ((pt Point) dx dy)  ; performs a translation (/!\ an object is the pair (param param-class))
+  (setf (?x pt) (+ dx (?x pt)))
+  (setf (?y pt) (+ dy (?y pt)))
+)
+      
+(setq $0 (make-instance 'Point :x 0 :y 0))  ; inistantiates a point (/!\ the class name is quoted)
+
+(setf (?x $0) 4)  ; access the attribute x and puts 4 into it
+
+(describe $0)  ; describe the objeect contained in $0
+      
+(=Translate $0)  ; Turns $0 into its symetric regarding the x axis
+
+(format t "After translation:~%")
+(describe $0)
+
+      
