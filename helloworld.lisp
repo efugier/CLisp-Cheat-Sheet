@@ -98,9 +98,9 @@ How a list is evaluated:
 ;;; (retrun-from fct-name value) can be used to return early
 
 (defun spooky ()
-	(format t "You can see me")  ; you will see that
+	(format t "You can see me~%")  ; you will see that
 	(return-from spooky "Potato")  ; The function stops everything here to return a potato
-	(format t "You can't see me")  ; you won't see that
+	(format t "You can't see me~%")  ; you won't see that
 )
 (spooky)
 
@@ -403,9 +403,9 @@ s ; 3
 
 (describe $0)  ; describe the objeect contained in $0
       
-(=Translate $0)  ; Turns $0 into its symetric regarding the x axis
+(=Translate $0 3 2)  ; Turns $0 into its symetric regarding the x axis
 
-(format t "After translation:~%")
+(format t "After translation by the (3 2) vector:~%")
 (describe $0)
 
       
