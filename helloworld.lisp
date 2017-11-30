@@ -53,10 +53,11 @@ How a list is evaluated:
 
 
 
-;;;; --------BASIC PRIMITIVES--------
+;;;; --------BASIC PRIMITIVES I--------
 
 
 (setq *print-case* :capitalize)  ; :upcase :downcase (*print-case* is set to upcase by default)
+;;; (setq a 12) <=> (set 'a 12) <=> (set (quote a) 12), the quote means "do not evaluate a")
 
 (format t "Hello, world !~%") ; ~% = \n in C
 
@@ -73,22 +74,38 @@ How a list is evaluated:
 
 (defvar *name* (read)) ; *global_variable* (convention) read input from console
 ;;; defvar only works the first time, once the varaible is declared, use setq instead
-;;; everything can be used in a variable name _ - * except spaces coz they serparate elements in a list
+;;; everything can be used in a variable name _ - * except spaces because they serparate elements in a list
 
 
-(defun f (param1 param2) "Optionnal commentary"
+
+;;;; --------FUNCTIONS--------
+
+(defun sum (param1 param2) "Optionnal commentary"
 	(+ param1 param2)
 )
 ;;; (defun function_name "optionnal docstring" (param_list) (function_body1) (f_body2))
-(f 1 2)  ; 3 ; (no parenthesis for the arguments)
+(sum 1 2)  ; 3 ; (no parenthesis for the arguments)
 
 (defun hello-you (yourname)
 	(format t "Hello, ~A !~%" yourname)
+	(format t "I like you.~%")
 )
 
-;;; (setq a 12) <=> (set 'a 12) <=> (set (quote a) 12), the quote means "do not evaluate a")
-
 (hello-you *name*)
+
+;;; returning from a function
+;;; by default the returned value is the last evaluated one
+;;; (retrun-from fct-name value) can be used to return early
+
+(defun spooky ()
+	(format t "You can see me")  ; you will see that
+	(return-from spooky "Potato")  ; The function stops everything here to return a potato
+	(format t "You can't see me")  ; you won't see that
+)
+(spooky)
+
+
+;;;; --------BASIC PRIMITIVES II--------
 
 (eq 1 2)
 (eq *name* 'Grudulain)  ; T
@@ -215,6 +232,7 @@ s ; 3
 	:do
 	(when (numberp i) (return i))  ; returns bearks the loop and returns the value
 )
+;;; /!\ return breaks the loop, not the encapsulating function (to return from a function use (return-from fct-name value)
 
 ;;; several variables can loop through the components of a complex list
 (loop :for (a b) :in '((x 1) (y 2) (z 3))  ; ((1 x) (2 y) (3 z))
