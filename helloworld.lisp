@@ -104,6 +104,17 @@ How a list is evaluated:
 )
 (spooky)
 
+;;; keyword function
+(defun hi (is_a_man &key first_name last_name)  ; params after &key are keywords params
+	(if is_a_man
+		(format t "Hi Mr. ~A, ~%" last_name)   ; if is_a_man is true
+	    	(format t "Hi Mrs. ~A, ~%" last_name)  ; if is_a_man is false
+	)
+	(format t "May I call you ~A ? ~%" first_name)
+)
+(hi t :last_name "Bond" :first_name "James")  ; the order doesn't matter anymore
+		
+
 
 ;;;; --------BASIC PRIMITIVES II--------
 
