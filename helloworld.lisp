@@ -26,7 +26,7 @@ Mutiligne comment
 ;;;; --------THEORY--------
 
 
-#|| About the Atoms :
+#|| About atoms :
 2 types of atoms:
 	- numbers (which value is the number itself)
 	- a symbol:
@@ -310,6 +310,14 @@ s ; 3
 
 (print-squares '(0 1 2 3 4 5 6 7))
 
+
+
+;;;; --------DOTTED PAIRS---------
+
+
+;;; starting an expression prevents the evaluation of everything that does not start with a coma
+
+(setq a `(ab ,(+ 1 2) d)) ; (ab 3 d)
 
 
 ;;;; --------DOTTED PAIRS---------
